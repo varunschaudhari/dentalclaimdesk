@@ -87,24 +87,25 @@ header {
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--line);
 }
-.nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; height: 64px; }
-.logo { display: flex; align-items: center; gap: 10px; font-family: Fraunces, serif; font-weight: 600; font-size: 1.15rem; text-decoration: none; }
+.nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; height: 78px; }
+.logo { display: flex; align-items: center; gap: 12px; font-family: Fraunces, serif; font-weight: 600; font-size: 1.55rem; line-height: 1.1; text-decoration: none; }
 .logo i {
-  width: 30px; height: 30px;
-  border-radius: 9px;
+  flex: none;
+  width: 46px; height: 46px;
+  border-radius: 12px;
   background: var(--brand);
   display: grid; place-items: center;
   color: var(--bg);
   font-style: normal;
-  font-size: 1rem;
+  font-size: 1.45rem;
 }
 .logo small {
   display: block;
-  font: 500 .62rem Inter, system-ui, sans-serif;
+  font: 500 .7rem Inter, system-ui, sans-serif;
   letter-spacing: .12em;
   color: var(--mute);
   text-transform: uppercase;
-  margin-top: -3px;
+  margin-top: 3px;
 }
 nav { display: flex; gap: 4px; overflow-x: auto; }
 nav a {
@@ -119,6 +120,9 @@ nav a {
 nav a.on, nav a:hover { color: var(--brand); background: var(--brand2); }
 @media (max-width: 560px) {
   .nav { flex-wrap: wrap; height: auto; padding-top: 10px; padding-bottom: 8px; row-gap: 6px; }
+  .logo { font-size: 1.3rem; gap: 10px; }
+  .logo i { width: 40px; height: 40px; font-size: 1.25rem; }
+  .logo small { font-size: .62rem; }
   nav { width: 100%; margin: 0 -12px; }
 }
 
@@ -413,3 +417,13 @@ a.topbar-item:hover { color: #f0a84a; }
   border-width: 0 1.8px 1.8px 0;
   transform: rotate(45deg);
 }
+
+/* ==========================================================================
+   Contact form: spam trap and send status
+   ========================================================================== */
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.form-status { margin: 14px 0 0; font-size: .92rem; font-weight: 500; }
+.form-status:empty { display: none; }
+.form-status.ok { color: var(--good); }
+.form-status.err { color: var(--bad); }
+.btn:disabled { opacity: .7; cursor: wait; }

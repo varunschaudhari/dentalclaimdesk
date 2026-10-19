@@ -23,15 +23,33 @@
     });
   });
 
-  // Contact form: opens the visitor's email app with the message pre-filled
+  // Contact form: sent to contact.php on our own server, which emails the office
   var form = document.getElementById("contact-form");
   if (form) {
+    var status = form.querySelector(".form-status");
+    var button = form.querySelector("button[type=submit]");
+    var say = function (text, ok) {
+      status.textContent = text;
+      status.className = "form-status " + (ok ? "ok" : "err");
+    };
     form.addEventListener("submit", function (e) {
       e.preventDefault();
-      var g = function (id) { return document.getElementById(id).value; };
-      location.href = "mailto:info@dentalclaimdesk.com?subject=" +
-        encodeURIComponent("Inquiry: " + g("s") + " - " + g("p")) +
-        "&body=" + encodeURIComponent("Name: " + g("n") + "\nEmail: " + g("e") + "\n\n" + g("m"));
+      button.disabled = true;
+      button.textContent = "Sending…";
+      say("", true);
+      fetch(form.action, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } })
+        .then(function (res) { return res.json(); })
+        .then(function (data) {
+          say(data.message, data.ok);
+          if (data.ok) form.reset();
+        })
+        .catch(function () {
+          say("Sorry, your message could not be sent. Please email us directly at info@dentalclaimdesk.com.", false);
+        })
+        .then(function () {
+          button.disabled = false;
+          button.textContent = "Send message";
+        });
     });
   }
 

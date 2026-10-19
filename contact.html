@@ -41,11 +41,11 @@
 
 <section>
   <div class="w grid g2">
-    <form class="card" id="contact-form">
+    <form class="card" id="contact-form" action="contact.php" method="post">
       <h3>Send us a message</h3>
-      <label for="n">Name</label><input id="n" name="name" autocomplete="name" placeholder="Your name">
+      <label for="n">Name</label><input id="n" name="name" autocomplete="name" placeholder="Your name" required>
       <label for="p">Practice name</label><input id="p" name="practice" autocomplete="organization" placeholder="Practice name">
-      <label for="e">Email</label><input id="e" name="email" type="email" autocomplete="email" placeholder="you@practice.com">
+      <label for="e">Email</label><input id="e" name="email" type="email" autocomplete="email" placeholder="you@practice.com" required>
       <label for="s">Where do you need help most?</label>
       <select id="s" name="topic">
         <option>Insurance verification</option>
@@ -56,9 +56,11 @@
         <option>Full-cycle RCM</option>
       </select>
       <label for="m">Describe your situation</label>
-      <textarea id="m" name="message" rows="4" placeholder="E.g. We have a growing 90+ day AR and denials for missing attachments."></textarea>
-      <div class="cta"><button type="submit" class="btn">Send via email</button></div>
-      <p class="note" style="margin-top:12px">Opens your email app with the message pre-filled. Please do not include patient information. See our <a href="privacy.html">Privacy Policy</a> for how we handle your details.</p>
+      <textarea id="m" name="message" rows="4" placeholder="E.g. We have a growing 90+ day AR and denials for missing attachments." required></textarea>
+      <div class="hp" aria-hidden="true"><label for="website">Leave this field empty</label><input id="website" name="website" tabindex="-1" autocomplete="off"></div>
+      <div class="cta"><button type="submit" class="btn">Send message</button></div>
+      <p class="form-status" role="status" aria-live="polite"></p>
+      <p class="note" style="margin-top:12px">Your message goes straight to our team. Please do not include patient information. See our <a href="privacy.html">Privacy Policy</a> for how we handle your details.</p>
     </form>
     <div>
       <div class="card">
