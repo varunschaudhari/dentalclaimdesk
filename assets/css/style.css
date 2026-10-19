@@ -272,29 +272,19 @@ footer .legal { margin-top: 20px; }
    ========================================================================== */
 .team { display: grid; grid-template-columns: 1fr 1.5fr; gap: 40px; align-items: center; }
 .founders { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
-.founder { position: relative; padding: 0; overflow: hidden; text-align: center; }
-.founder:has(img[src*="/sample-"])::before {
-  content: "Sample photo";
-  position: absolute;
-  top: 12px; left: 12px;
-  padding: 4px 10px;
-  border-radius: 99px;
-  background: rgba(18, 48, 47, .85);
-  color: #fff;
-  font: 600 .7rem Inter, system-ui, sans-serif;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-}
-.founder img {
-  display: block;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
+.founder { padding: 32px 20px 28px; text-align: center; }
+.monogram {
+  display: grid;
+  place-items: center;
+  width: 96px; height: 96px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
   background: var(--brand2);
+  color: var(--brand);
+  font: 600 2rem Fraunces, serif;
+  letter-spacing: .02em;
 }
-.founder-info { padding: 16px 16px 20px; border-top: 1px solid var(--line); }
-.founder h3 { margin: 0 0 4px; }
+.founder h3 { margin: 0 0 6px; }
 .founder .role {
   font: 600 .72rem Inter, system-ui, sans-serif;
   letter-spacing: .12em;
@@ -306,7 +296,8 @@ footer .legal { margin-top: 20px; }
 }
 @media (max-width: 420px) {
   .founders { gap: 12px; }
-  .founder-info { padding: 12px 8px 14px; }
+  .founder { padding: 24px 10px 20px; }
+  .monogram { width: 72px; height: 72px; font-size: 1.5rem; }
   .founder h3 { font-size: 1rem; }
 }
 .card p strong, footer strong { color: var(--ink); font-weight: 600; }
