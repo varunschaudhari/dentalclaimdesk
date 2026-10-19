@@ -226,7 +226,7 @@ nav a.on, nav a:hover { color: var(--brand); background: var(--brand2); }
   border-radius: 99px;
   margin: 0 6px 6px 0;
 }
-.svc { display: grid; grid-template-columns: 1fr 1.4fr; gap: 28px; padding: 32px 0; border-top: 1px solid var(--line); }
+.svc { display: grid; grid-template-columns: 1fr 1.4fr; gap: 28px; align-items: start; padding: 32px 0; border-top: 1px solid var(--line); }
 .svc h2 { font-size: 1.5rem; }
 .svc .card p { margin: 0; color: var(--ink); }
 @media (max-width: 760px) {
@@ -310,3 +310,115 @@ footer .legal { margin-top: 20px; }
   .founder h3 { font-size: 1rem; }
 }
 .card p strong, footer strong { color: var(--ink); font-weight: 600; }
+
+/* ==========================================================================
+   Top contact bar (all pages)
+   ========================================================================== */
+.topbar { background: #12302f; color: #e6f0ee; font-size: .82rem; }
+.topbar-in { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 40px; }
+.topbar-group { display: flex; align-items: center; gap: 22px; }
+.topbar-item { display: inline-flex; align-items: center; gap: 7px; text-decoration: none; white-space: nowrap; }
+a.topbar-item:hover { color: #f0a84a; }
+.topbar svg { width: 14px; height: 14px; fill: currentColor; flex: none; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .topbar { background: #0a1514; }
+}
+:root[data-theme="dark"] .topbar { background: #0a1514; }
+@media (max-width: 760px) {
+  .topbar .hide-s { display: none; }
+}
+@media (max-width: 560px) {
+  .topbar-in { justify-content: center; gap: 16px; flex-wrap: wrap; padding-top: 6px; padding-bottom: 6px; }
+}
+
+/* ==========================================================================
+   Home: photo banner
+   ========================================================================== */
+.photo-hero {
+  display: flex;
+  align-items: center;
+  min-height: 540px;
+  padding: 72px 0;
+  color: #fff;
+  background:
+    linear-gradient(90deg, rgba(10, 30, 29, .9) 0%, rgba(10, 30, 29, .72) 45%, rgba(10, 30, 29, .3) 100%),
+    url("../img/hero.jpg") center / cover no-repeat;
+}
+.photo-hero .w { width: 100%; }
+.photo-hero-copy { max-width: 700px; }
+.photo-hero .eyebrow { color: #f0a84a; }
+.photo-hero h1 { color: #fff; font-size: clamp(2.2rem, 5vw, 3.6rem); }
+.photo-hero p { color: rgba(255, 255, 255, .88); font-size: 1.02rem; }
+.btn.light { background: #fff; color: #0f5c57; }
+
+/* ==========================================================================
+   Home: feature cards under the banner
+   ========================================================================== */
+.features { padding: 0; background: var(--surf); border-bottom: 1px solid var(--line); }
+.feat-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+.feat { position: relative; overflow: hidden; padding: 40px 26px 92px; }
+.feat + .feat { border-left: 1px solid var(--line); }
+.feat-head { display: grid; grid-template-columns: 50px 1fr; gap: 16px; }
+.feat-icon svg { width: 46px; height: 46px; fill: none; stroke: var(--brand); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.feat h3 { font-size: 1.25rem; margin-bottom: .4em; }
+.feat p { font-size: .9rem; margin: 0; }
+.feat-foot { position: absolute; left: 26px; right: 26px; bottom: -14px; display: flex; align-items: center; gap: 14px; }
+.feat-num {
+  font: 500 4rem/1 Inter, system-ui, sans-serif;
+  color: transparent;
+  -webkit-text-stroke: 1.5px color-mix(in srgb, var(--brand) 45%, transparent);
+}
+.feat-line { flex: 1; height: 1px; background: var(--line); margin-bottom: 14px; }
+.feat-arrow {
+  flex: none;
+  display: grid; place-items: center;
+  width: 44px; height: 30px;
+  margin-bottom: 14px;
+  border: 1.5px solid var(--brand);
+  border-radius: 99px;
+  color: var(--brand);
+}
+.feat-arrow svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.feat:hover .feat-arrow { background: var(--brand); color: var(--bg); }
+@media (max-width: 860px) {
+  .feat-grid { grid-template-columns: 1fr; }
+  .feat + .feat { border-left: 0; border-top: 1px solid var(--line); }
+  .feat { padding-left: 0; padding-right: 0; }
+  .feat-foot { left: 0; right: 0; }
+}
+
+/* Home: intro that follows the feature cards */
+.intro .grid { grid-template-columns: 1.2fr 1fr; align-items: center; gap: 40px; }
+@media (max-width: 860px) {
+  .intro .grid { grid-template-columns: 1fr; }
+}
+
+/* ==========================================================================
+   Services: "What's included" checklist
+   ========================================================================== */
+.inc-title {
+  font: 600 .75rem Inter, system-ui, sans-serif;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin: 18px 0 10px;
+}
+.inc { list-style: none; padding: 0; margin: 0; }
+.inc li { position: relative; padding: 0 0 8px 26px; font-size: .92rem; color: var(--mute); }
+.inc li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: .3em;
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--good) 18%, transparent);
+}
+.inc li::after {
+  content: "";
+  position: absolute;
+  left: 5px; top: calc(.3em + 4px);
+  width: 4px; height: 7px;
+  border: solid var(--good);
+  border-width: 0 1.8px 1.8px 0;
+  transform: rotate(45deg);
+}
