@@ -1,12 +1,13 @@
-# Deploys the website to the cPanel hosting (public_html) over secure FTP
-# every time changes are pushed to main. It can also be run by hand from the
+# Deploys the website to the cPanel hosting over secure FTP every time
+# changes are pushed to main. It can also be run by hand from the
 # repository's Actions tab ("Run workflow").
 #
 # Needs three repository secrets (Settings → Secrets and variables → Actions):
 #   FTP_SERVER    fin1.fleshdns.net  (the name on the server's FTP certificate)
 #   FTP_USERNAME  the cPanel FTP account, e.g. deploy@dentalclaimdesk.com
 #   FTP_PASSWORD  that account's password
-# The FTP account's directory in cPanel must be exactly: public_html
+# The FTP account's directory in cPanel must be the site's document root,
+# which on this hosting is: dentalclaimdesk.com (/home/vayfvvdc/dentalclaimdesk.com)
 
 name: Deploy to cPanel
 
@@ -33,7 +34,7 @@ jobs:
         if: env.FTP_SERVER != ''
         uses: actions/checkout@v4
 
-      - name: Upload changed files to public_html
+      - name: Upload changed files to the website folder
         if: env.FTP_SERVER != ''
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
