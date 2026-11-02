@@ -7,7 +7,9 @@
 #   FTP_USERNAME  the cPanel FTP account, e.g. deploy@dentalclaimdesk.com
 #   FTP_PASSWORD  that account's password
 # The FTP account's directory in cPanel must be the site's document root,
-# which on this hosting is: dentalclaimdesk.com (/home/vayfvvdc/dentalclaimdesk.com)
+# which on this hosting is: public_html (/home/vayfvvdc/public_html).
+# cPanel suggests "dentalclaimdesk.com/..." when creating the account; that
+# folder is NOT served, so replace it with public_html.
 
 name: Deploy to cPanel
 
