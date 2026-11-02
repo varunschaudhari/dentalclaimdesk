@@ -1,0 +1,51 @@
+# Deploys the website to the cPanel hosting (public_html) over secure FTP
+# every time changes are pushed to main. It can also be run by hand from the
+# repository's Actions tab ("Run workflow").
+#
+# Needs three repository secrets (Settings → Secrets and variables → Actions):
+#   FTP_SERVER    fin1.fleshdns.net  (the name on the server's FTP certificate)
+#   FTP_USERNAME  the cPanel FTP account, e.g. deploy@dentalclaimdesk.com
+#   FTP_PASSWORD  that account's password
+# The FTP account's directory in cPanel must be exactly: public_html
+
+name: Deploy to cPanel
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-cpanel
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      FTP_SERVER: ${{ secrets.FTP_SERVER }}
+    steps:
+      - name: Skip until the FTP secrets are added
+        if: env.FTP_SERVER == ''
+        run: echo "::notice::FTP secrets are not configured yet, so nothing was deployed."
+
+      - name: Check out the site
+        if: env.FTP_SERVER != ''
+        uses: actions/checkout@v4
+
+      - name: Upload changed files to public_html
+        if: env.FTP_SERVER != ''
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
+          security: strict
+          server-dir: ./
+          exclude: |
+            **/.git*
+            **/.git*/**
+            .github/**
+            README.md
